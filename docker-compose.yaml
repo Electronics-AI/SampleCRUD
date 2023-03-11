@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+    crud_postgres_database:
+        image: postgres:13.3
+        container_name: crud_postgres_database
+        hostname: postgres
+        environment:
+            - POSTGRES_DB=CrudDatabase
+            - POSTGRES_USER=CrudApp
+            - POSTGRES_PASSWORD=1234notsecure
+            - PGDATA=/var/lib/postgresql/data/pgdata
+        volumes:
+            - ./postgres/2. Init Database:/docker-entrypoint-initdb.d
+            - ./postgres:/var/lib/postgresql/data
+        ports:
+            - "5433:5432"
